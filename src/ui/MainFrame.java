@@ -23,10 +23,10 @@ public class MainFrame {
     private void prepareGUI() {
         try {
             // setTheme(String themeName, String licenseKey, String logoString)
-            com.jtattoo.plaf.acryl.AcrylLookAndFeel.setTheme("Green");
+            com.jtattoo.plaf.graphite.GraphiteLookAndFeel.setTheme("Blue");
 
             // select the Look and Feel
-            UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
+            UIManager.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel");
 
             // start the demo application
         } catch (IllegalAccessException e) {
@@ -65,7 +65,8 @@ public class MainFrame {
         mainFrame.setIconImage(iconImage.getImage());
 
         // title
-        title = new JLabel("booking system", SwingConstants.CENTER);
+        title = new JLabel();
+        title.setIcon(new ImageIcon(getClass().getResource("/res/logo.png")));
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         title.setAlignmentY(Component.CENTER_ALIGNMENT);
         title.setFont(new Font("Serif", Font.BOLD, 50));

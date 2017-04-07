@@ -34,7 +34,7 @@ public class LoginScreen extends JPanel {
 
         // login
         loginButton = new JButton("Login");
-        loginButton.setBackground(Color.green);
+        loginButton.setBackground(Color.BLUE);
         this.add(loginButton);
 
         // register
