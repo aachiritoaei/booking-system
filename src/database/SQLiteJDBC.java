@@ -3,6 +3,9 @@ package database;
 import java.io.File;
 import java.sql.*;
 
+/**
+ * Created by Vasile-Cristian Spiru on 07-Apr-17.
+ */
 public class SQLiteJDBC {
 
     //Metoda creeaza baza de date a proiectului
@@ -208,9 +211,9 @@ public class SQLiteJDBC {
         File database_name = new File("project.db");
         if (database_name.exists() == false) {
             data_base.createDataBase();
-            System.out.println("Penis");
+            System.out.println("Create database");
         } else {
-            System.out.println("Penis2");
+            System.out.println("Existent database");
         }
         data_base.registerUser("Petrut", "Pietrificatorul", "Pisti", "pisti@gmail.com", "0754303421");
         data_base.registerUser("Petrut", "Pietrificatorul", "Pisti", "pisti@gmail.com", "0754303421");

@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 /**
- * Created by achir_000 on 07-Apr-17.
+ * Created by Alexandru-Adrian Achiritoaei on 07-Apr-17.
  */
 public class LogoutScreen extends JPanel {
 
