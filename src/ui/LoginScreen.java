@@ -1,5 +1,7 @@
 package ui;
 
+import ui.utils.CustomButton;
+
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicOptionPaneUI;
 import java.awt.*;
@@ -13,7 +15,7 @@ public class LoginScreen extends JPanel {
     JLabel usernameLabel, passwordLabel, registerLabel;
     JTextField usernameTF;
     JPasswordField passwordTF;
-    JButton loginButton, registerButton;
+    CustomButton loginButton, registerButton;
 
     public LoginScreen() {
         this.setLayout(new GridLayout(8, 1));
@@ -25,7 +27,7 @@ public class LoginScreen extends JPanel {
         usernameTF.setHorizontalAlignment(JTextField.CENTER);
         this.add(usernameTF);
 
-        // pasword
+        // password
         passwordLabel = new JLabel("Insert password:", SwingConstants.CENTER);
         this.add(passwordLabel);
         passwordTF = new JPasswordField();
@@ -33,14 +35,13 @@ public class LoginScreen extends JPanel {
         this.add(passwordTF);
 
         // login
-        loginButton = new JButton("Login");
-        loginButton.setBackground(Color.BLUE);
+        loginButton = new CustomButton("Login");
         this.add(loginButton);
 
         // register
         registerLabel = new JLabel("Don't have an account?", SwingConstants.CENTER);
         this.add(registerLabel);
-        registerButton = new JButton("Register");
+        registerButton = new CustomButton("Register");
         this.add(registerButton);
     }
 

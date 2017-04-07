@@ -1,5 +1,7 @@
 package ui;
 
+import ui.utils.CustomButton;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -12,7 +14,7 @@ public class RegisterScreen extends JPanel {
     JLabel usernameLabel, passwordLabel, mailLabel;
     JTextField usernameTF, mailTF;
     JPasswordField passwordTF;
-    JButton registerButton, backButton;
+    CustomButton registerButton, backButton;
 
     public RegisterScreen() {
         this.setLayout(new GridLayout(8, 1));
@@ -39,11 +41,11 @@ public class RegisterScreen extends JPanel {
         this.add(mailTF);
 
         // register
-        registerButton = new JButton("Register");
+        registerButton = new CustomButton("Register");
         this.add(registerButton);
 
         // back
-        backButton = new JButton("Back");
+        backButton = new CustomButton("Back");
         this.add(backButton);
     }
 
