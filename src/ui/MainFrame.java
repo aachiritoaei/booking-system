@@ -12,9 +12,12 @@ public class MainFrame {
     private JPanel cards;
     private JLabel title;
 
-    final static String LOGINPANEL = "login panel";
-    final static String REGISTERPANEL = "register panel";
-    final static String LOGOUTPANEL = "logout panel";
+    private final static String LOGINPANEL = "login panel";
+    private final static String REGISTERPANEL = "register panel";
+    private final static String SEARCHPANEL = "search panel";
+    private final static String LISTRESULTPANEL = "list result panel";
+    private final static String VIEWRESULTPANEL = "view result panel";
+    private final static String LOGOUTPANEL = "logout panel";
 
     public MainFrame() {
         prepareGUI();
@@ -77,12 +80,12 @@ public class MainFrame {
         cardLayout.setHgap(10);
         cardLayout.setVgap(10);
         cards = new JPanel(cardLayout);
-        cards.setMaximumSize(new Dimension(300, 400));
+        cards.setMaximumSize(new Dimension(500, 400));
         mainFrame.add(cards);
 
         // Login screen
         LoginScreen loginScreen = new LoginScreen();
-        loginScreen.addLoginAction(e -> cardLayout.show(cards, LOGOUTPANEL));
+        loginScreen.addLoginAction(e -> cardLayout.show(cards, SEARCHPANEL));
         loginScreen.addRegisterAction(e -> cardLayout.show(cards, REGISTERPANEL));
         cards.add(loginScreen, LOGINPANEL);
 
@@ -91,6 +94,27 @@ public class MainFrame {
         registerScreen.addRegisterAction(e -> cardLayout.show(cards, LOGINPANEL));
         registerScreen.addBackAction(e -> cardLayout.show(cards, LOGINPANEL));
         cards.add(registerScreen, REGISTERPANEL);
+
+        // Search screen
+        SearchScreen searchScreen = new SearchScreen();
+        searchScreen.addSearchAction(e -> cardLayout.show(cards, LISTRESULTPANEL));
+        cards.add(searchScreen, SEARCHPANEL);
+
+        // View result screen
+        ViewResultScreen viewResultScreen = new ViewResultScreen();
+        viewResultScreen.addBackAction(e -> cardLayout.show(cards, LISTRESULTPANEL));
+        cards.add(viewResultScreen, VIEWRESULTPANEL);
+
+        // List results screen
+        ListResultsScreen listResultsScreen = new ListResultsScreen(viewResultScreen);
+        listResultsScreen.addViewAction(e -> {
+            viewResultScreen.setTitle(listResultsScreen.getSelectedValue());
+            cardLayout.show(cards, VIEWRESULTPANEL);
+        });
+        listResultsScreen.addBackAction(e -> cardLayout.show(cards, SEARCHPANEL));
+        cards.add(listResultsScreen, LISTRESULTPANEL);
+
+
 
         // Logout screen
         LogoutScreen logoutScreen = new LogoutScreen();

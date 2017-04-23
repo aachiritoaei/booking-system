@@ -3,6 +3,10 @@ package ui;
 import ui.utils.CustomButton;
 
 import javax.swing.*;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DocumentFilter;
+import javax.swing.text.PlainDocument;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
@@ -11,13 +15,13 @@ import java.awt.event.ActionListener;
  */
 public class RegisterScreen extends JPanel {
 
-    JLabel usernameLabel, passwordLabel, mailLabel;
-    JTextField usernameTF, mailTF;
-    JPasswordField passwordTF;
-    CustomButton registerButton, backButton;
+    private JLabel usernameLabel, passwordLabel, mailLabel, phoneLabel;
+    private JTextField usernameTF, mailTF, phoneTF;
+    private JPasswordField passwordTF;
+    private CustomButton registerButton, backButton;
 
     public RegisterScreen() {
-        this.setLayout(new GridLayout(8, 1));
+        this.setLayout(new GridLayout(10, 1));
 
         // username
         usernameLabel = new JLabel("Insert username:", SwingConstants.CENTER);
@@ -40,6 +44,14 @@ public class RegisterScreen extends JPanel {
         mailTF.setHorizontalAlignment(JTextField.CENTER);
         this.add(mailTF);
 
+        // phone
+        phoneLabel = new JLabel("Insert phone:", SwingConstants.CENTER);
+        this.add(phoneLabel);
+        phoneTF = new JTextField();
+        phoneTF.setHorizontalAlignment(JTextField.CENTER);
+        phoneTF.setDocument(customTFDocument());
+        this.add(phoneTF);
+
         // register
         registerButton = new CustomButton("Register");
         this.add(registerButton);
@@ -55,5 +67,25 @@ public class RegisterScreen extends JPanel {
 
     public void addBackAction(ActionListener actionListener) {
         backButton.addActionListener(actionListener);
+    }
+
+    private PlainDocument customTFDocument() {
+        PlainDocument doc = new PlainDocument();
+        doc.setDocumentFilter(new DocumentFilter() {
+            @Override
+            public void insertString(FilterBypass fb, int off, String str, AttributeSet attr)
+                    throws BadLocationException
+            {
+                fb.insertString(off, str.replaceAll("\\D++", ""), attr);  // remove non-digits
+            }
+            @Override
+            public void replace(FilterBypass fb, int off, int len, String str, AttributeSet attr)
+                    throws BadLocationException
+            {
+                fb.replace(off, len, str.replaceAll("\\D++", ""), attr);  // remove non-digits
+            }
+        });
+
+        return doc;
     }
 }

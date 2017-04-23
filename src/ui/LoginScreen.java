@@ -12,10 +12,10 @@ import java.awt.event.ActionListener;
  */
 public class LoginScreen extends JPanel {
 
-    JLabel usernameLabel, passwordLabel, registerLabel;
-    JTextField usernameTF;
-    JPasswordField passwordTF;
-    CustomButton loginButton, registerButton;
+    private JLabel usernameLabel, passwordLabel, registerLabel;
+    private JTextField usernameTF;
+    private JPasswordField passwordTF;
+    private CustomButton loginButton, registerButton;
 
     public LoginScreen() {
         this.setLayout(new GridLayout(8, 1));
