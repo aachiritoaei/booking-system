@@ -1,8 +1,11 @@
 package client_server;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+
+import database.SQLiteJDBC;
 
 /**
  * Created by Adrian-Claudiu Marinas on 07-Apr-17.
@@ -14,10 +17,19 @@ public class HotelServer {
     private HotelServerThread clients[] = new HotelServerThread[8];
     private ServerSocket server = null;
     private int clientCount = 0;
-
+    public SQLiteJDBC sqlDataBase;
 
     public HotelServer(int port) {
         try {
+            sqlDataBase = new SQLiteJDBC();
+            File database_name = new File("project.db");
+            if(database_name.exists() == false){
+                sqlDataBase.createDataBase();
+                System.out.println("DB nu exista");
+            } else {
+                System.out.println("DB exista");
+            }
+
             System.out.println("Binding to port " + port + ", please wait  ...");
             server = new ServerSocket(port);
             System.out.println("Server started: " + server);
