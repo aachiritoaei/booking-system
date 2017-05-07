@@ -1,5 +1,14 @@
 package ui;
 
+import ui.admin.AddEmployeeScreen;
+import ui.admin.AddHotelScreen;
+import ui.admin.AddRoomScreen;
+import ui.admin.AdminScreen;
+import ui.employee.ReservationsScreen;
+import ui.user.ListResultsScreen;
+import ui.user.SearchScreen;
+import ui.user.ViewResultScreen;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -14,10 +23,21 @@ public class MainFrame {
 
     private final static String LOGINPANEL = "login panel";
     private final static String REGISTERPANEL = "register panel";
+
     private final static String SEARCHPANEL = "search panel";
     private final static String LISTRESULTPANEL = "list result panel";
     private final static String VIEWRESULTPANEL = "view result panel";
+
+    private final static String ADMINPANEL = "admin panel";
+    private final static String ADDEMPLOYEEPANEL = "add employee panel";
+    private final static String ADDHOTELPANEL = "add hotel panel";
+    private final static String ADDROOMPANEL = "add room panel";
+
+    private final static String RESERVATIONPANEL = "reservation panel";
+
     private final static String LOGOUTPANEL = "logout panel";
+
+
 
     public MainFrame() {
         prepareGUI();
@@ -85,7 +105,9 @@ public class MainFrame {
 
         // Login screen
         LoginScreen loginScreen = new LoginScreen();
-        loginScreen.addLoginAction(e -> cardLayout.show(cards, SEARCHPANEL));
+//        loginScreen.addLoginAction(e -> cardLayout.show(cards, SEARCHPANEL));
+        loginScreen.addLoginAction(e -> cardLayout.show(cards, ADMINPANEL));
+//        loginScreen.addLoginAction(e -> cardLayout.show(cards, RESERVATIONPANEL));
         loginScreen.addRegisterAction(e -> cardLayout.show(cards, REGISTERPANEL));
         cards.add(loginScreen, LOGINPANEL);
 
@@ -95,6 +117,41 @@ public class MainFrame {
         registerScreen.addBackAction(e -> cardLayout.show(cards, LOGINPANEL));
         cards.add(registerScreen, REGISTERPANEL);
 
+        /**
+         * Admin screens
+         */
+        // admin screen
+        AdminScreen adminScreen = new AdminScreen();
+        adminScreen.addEmployeehAction(e -> cardLayout.show(cards, ADDEMPLOYEEPANEL));
+        adminScreen.addHotelAction(e -> cardLayout.show(cards, ADDHOTELPANEL));
+        adminScreen.addRoomAction(e -> cardLayout.show(cards, ADDROOMPANEL));
+        cards.add(adminScreen, ADMINPANEL);
+
+        // add employee screen
+        AddEmployeeScreen addEmployeeScreen= new AddEmployeeScreen();
+        addEmployeeScreen.addBackAction(e -> cardLayout.show(cards, ADMINPANEL));
+        cards.add(addEmployeeScreen, ADDEMPLOYEEPANEL);
+
+        // add hotel screen
+        AddHotelScreen addHotelScreen = new AddHotelScreen();
+        addHotelScreen.addBackAction(e -> cardLayout.show(cards, ADMINPANEL));
+        cards.add(addHotelScreen, ADDHOTELPANEL);
+
+        // add room screen
+        AddRoomScreen addRoomScreen = new AddRoomScreen();
+        addRoomScreen.addBackAction(e -> cardLayout.show(cards, ADMINPANEL));
+        cards.add(addRoomScreen, ADDROOMPANEL);
+
+        /**
+         * Employee screens
+         */
+
+        ReservationsScreen reservationsScreen = new ReservationsScreen();
+        cards.add(reservationsScreen, RESERVATIONPANEL);
+
+        /**
+         * User screens
+         */
         // Search screen
         SearchScreen searchScreen = new SearchScreen();
         searchScreen.addSearchAction(e -> cardLayout.show(cards, LISTRESULTPANEL));
@@ -113,8 +170,6 @@ public class MainFrame {
         });
         listResultsScreen.addBackAction(e -> cardLayout.show(cards, SEARCHPANEL));
         cards.add(listResultsScreen, LISTRESULTPANEL);
-
-
 
         // Logout screen
         LogoutScreen logoutScreen = new LogoutScreen();
